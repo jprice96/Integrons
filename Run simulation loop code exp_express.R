@@ -2,8 +2,6 @@ setwd("/Users/Jack/Dropbox/RCode/SimFunctions")
 source("SimLoop_function_exponent_express.R")
 source("Generic_Functions.R")
 library(foreach)
-# library(ggplot2)
-# library(ggpubr)
 library(doParallel)
 
 n.cores = detectCores() - 1
