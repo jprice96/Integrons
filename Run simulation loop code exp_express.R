@@ -26,7 +26,7 @@ cassette.reinsertion = 0.9
 integron.length = 4
 adaptive.cassette = "4"
 
-num.replicates = 100
+num.replicates = 1000
 
 for(c in 2:length(selection)){
   for(a in 4:length(cassette.excision)){
