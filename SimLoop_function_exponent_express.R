@@ -1,17 +1,3 @@
-# ##Testing parameter set up
-#
-# adaptive.birth = adaptive.birth[e]
-# wildtype.birth = wildtype.birth[c]
-# adaptive.death = adaptive.death[f]
-# wildtype.death = wildtype.death[d]
-# integron.length = integron.length[g]
-# adaptive.cassette = adaptive.cassette[h]
-# pop = 10^5
-# integron = seq(1, integron.length[g], 1)
-# integron = as.character(integron)
-# cassette.shuffle = cassette.excision[[a]]*cassette.reinsertion[[b]]
-# cassette.loss = cassette.excision[[a]]*(1-cassette.reinsertion[[b]])
-
 # selection x partial expression results in
 ###     death.rate = selection - (selection*(partial.express)^position) + partial.express
 ###     where selection is the death.rate of wild-type in relation to birth.rate (1)
@@ -86,7 +72,6 @@ simulation_loop <- function(pop, start.pop, selection, partial.express,
       tau = 5 - population[t, 1]
     }
     
-    # Cautionary check point    I HAVE ADDED THE BELOW LINE AS A TEST CHANGE
     if(tau == 0){tau = 15 - population[t,1]}
     # if(tau == 0){print("Error: Tau equals 0")}
     
@@ -105,7 +90,6 @@ simulation_loop <- function(pop, start.pop, selection, partial.express,
       population[t+1, i+2] = population[t, i+2] + events$Birth[i] - events$Death[i]
     }
     
-    ##Putting this here is a dirty fix, but I am not sure of a more elegant approach atm
     #Population clean-up
     for(i in 3:length(population[1,])){
       if(population[t+1, i]<0){
@@ -131,7 +115,7 @@ simulation_loop <- function(pop, start.pop, selection, partial.express,
         }
       }
     }
-    #Assign integrase events within time tau -- I am rounding these numbers, it may need to always round down?
+    #Assign integrase events within time tau
     for(i in 1:length(events$Genotype)){
       events$Shuffle[i] = round(rpois(1, gen.rates$Shuffle[i]))
       #Loss events
@@ -227,10 +211,6 @@ simulation_loop <- function(pop, start.pop, selection, partial.express,
 
 
 #Function allowing multiple successive simulations on the same population
-
-# start.pop = 10^5
-# sim.num = 3
-
 
 multi.sim.fun = function(sim.num,
                          start.pop, selection, partial.express,
