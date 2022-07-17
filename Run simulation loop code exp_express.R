@@ -42,7 +42,6 @@ for(c in 2:length(selection)){
           cassette.shuffle = cassette.excision[[a]]*cassette.reinsertion[[b]]
           cassette.loss = cassette.excision[[a]]*(1-cassette.reinsertion[[b]])
           
-          #It isn't finishing this (below) line when it is freezing
           data.files$Population = foreach(i=1:num.replicates) %dopar% {
             multi.sim.fun(1, start.pop, selection[c], partial.express, cassette.shuffle, cassette.loss, integron, integron.length[g], adaptive.cassette[h])
           }
